@@ -405,6 +405,8 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sn', function()
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
       end, { desc = '[S]earch [N]eovim files' })
+      -- Shortcut to find todos
+      vim.keymap.set('n', '<leader>st', '<cmd>TodoTelescope<cr>', { desc = '[S]earch [T]odos' })
     end,
   },
 
@@ -796,7 +798,26 @@ require('lazy').setup({
   },
 
   -- Highlight todo, notes, etc in comments
-  { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
+  {
+    'folke/todo-comments.nvim',
+    cmd = { 'TodoTrouble', 'TodoTelescope' },
+    event = { 'BufReadPre', 'BufNewFile' },
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    config = function()
+      local todo_comments = require 'todo-comments'
+      -- set keymaps
+      local keymap = vim.keymap
+
+      keymap.set('n', ']t', function()
+        todo_comments.jump_next()
+      end, { desc = 'Next todo comment' })
+
+      keymap.set('n', '[t', function()
+        todo_comments.jump_prev()
+      end, { desc = 'Previous todo comment' })
+      todo_comments.setup()
+    end,
+  },
 
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
