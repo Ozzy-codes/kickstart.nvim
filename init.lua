@@ -191,11 +191,11 @@ vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower win
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- custom keymap of brace and quote in insert mode
-vim.keymap.set('i', '"', '""<Esc>i')
-vim.keymap.set('i', "'", "''<Esc>i")
-vim.keymap.set('i', '(', '()<Esc>i')
-vim.keymap.set('i', '[', '[]<Esc>i')
-vim.keymap.set('i', '{<cr>', '{<cr>}<Esc>O')
+-- vim.keymap.set('i', '"', '""<Esc>i')
+-- vim.keymap.set('i', "'", "''<Esc>i")
+-- vim.keymap.set('i', '(', '()<Esc>i')
+-- vim.keymap.set('i', '[', '[]<Esc>i')
+-- vim.keymap.set('i', '{<cr>', '{<cr>}<Esc>O')
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -906,9 +906,9 @@ require('lazy').setup({
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
   -- require 'kickstart.plugins.debug',
-  -- require 'kickstart.plugins.indent_line',
+  require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
-  -- require 'kickstart.plugins.autopairs',
+  require 'kickstart.plugins.autopairs',
   -- require 'kickstart.plugins.neo-tree',
   -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
